@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import * as ImageAnalysis from './azure-image-analysis';
-// import * as ImageGeneration from './azure-image-generation';
+import * as ImageGeneration from './azure-image-generation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [input, setInput] = useState('');
-  const [result, setResult] = useState(null);
+  const [imageUrl, setImageUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   // const [isConfiguredMessage, setIsConfiguredMessage] = useState(false);
 
@@ -17,7 +17,7 @@ function App() {
     setIsLoading(true);
     try {
       const analyzedResult = await ImageAnalysis.analyzeImage(input);
-      setResult(analyzedResult);
+      setImageUrl(analyzedResult);
     } catch (error) {
       console.error("Error analyzing image:", error);
     } finally {
@@ -28,8 +28,8 @@ function App() {
   const handleGenerateClick = async () => {
     setIsLoading(true);
     try {
-      // const generatedResult = await ImageGeneration.generateImage(input);
-      // setResult(generatedResult[0]);
+      const generatedUrl = await ImageGeneration.generateImage(input);
+      setImageUrl(generatedUrl);
     } catch (error) {
       console.error("Error generating image:", error);
     } finally {
@@ -42,20 +42,20 @@ function App() {
   };
 
   const displayResult = () => {
-    if (!result) return null;
+    if (!imageUrl) return null;
     return (
       <div>
-        <p class="fs-3 text-semi-bold text-danger">Analysis Result</p>
-        <img width="400" src={result?.url ? result.url : input} alt="analyzed" className='img-fluid'/>
+        <p className="fs-3 text-semi-bold text-danger">Generated Image</p>
+        <img width="400" src={imageUrl?.url ? imageUrl.url : imageUrl} alt="img" className='img-fluid'/>
         {/* <pre> {JSON.stringify(result, null, 2)} </pre> */}
         <p className='lead text-start '>Description:
-          <small class="text-body-secondary"> {result.description.captions[0].text}</small>
+          <small className="text-body-secondary"> {imageUrl.description.captions[0].text}</small>
         </p>
         <p className='lead text-start'>Confidence:
-          <small class="text-body-secondary"> {result.description.captions[0].confidence}</small>
+          <small className="text-body-secondary"> {imageUrl.description.captions[0].confidence}</small>
         </p>
         <p className='lead text-start'>Tags:
-          <small class="text-body-secondary"> {result.description.tags.join(', ')}</small>
+          <small className="text-body-secondary"> {imageUrl.description.tags.join(', ')}</small>
         </p>
       </div>
     );
@@ -79,7 +79,7 @@ function App() {
     <div className="App">
       <div className="container">
           <header className="d-flex justify-content-center py-3">
-            <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+            <a href="/" className="d-flex align-items-center link-body-emphasis text-decoration-none">
               <h1 className="display-5 fw-bold text-info">Image Analyzer & Generator</h1>
             </a>
           </header>
