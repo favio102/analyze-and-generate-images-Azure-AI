@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import * as ImageAnalysis from './azure-image-analysis';
+import * as ImageAnalysis from './azure-image-analysis';
 // import * as ImageGeneration from './azure-image-generation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,8 +16,8 @@ function App() {
   const handleAnalyzeClick = async () => {
     setIsLoading(true);
     try {
-      // const analyzedResult = await ImageAnalysis.analyzeImage(input);
-      // setResult(analyzedResult);
+      const analyzedResult = await ImageAnalysis.analyzeImage(input);
+      setResult(analyzedResult);
     } catch (error) {
       console.error("Error analyzing image:", error);
     } finally {
