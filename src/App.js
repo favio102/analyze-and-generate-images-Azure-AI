@@ -46,8 +46,8 @@ function App() {
     return (
       <div>
         <p className="fs-3 text-semi-bold text-danger">Generated Image</p>
-        <img width="400" src={imageUrl?.url ? imageUrl.url : imageUrl} alt="img" className='img-fluid'/>
-        {/* <pre> {JSON.stringify(result, null, 2)} </pre> */}
+        <img width="400" src={imageUrl?.url ? imageUrl.url : input} alt="analyzed" className='img-fluid'/>
+        {/* <pre> {JSON.stringify(imageUrl, null, 2)} </pre> */}
         <p className='lead text-start '>Description:
           <small className="text-body-secondary"> {imageUrl.description.captions[0].text}</small>
         </p>
