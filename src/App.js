@@ -45,17 +45,17 @@ function App() {
     if (!imageUrl) return null;
     return (
       <div>
-        <p className="fs-3 text-semi-bold text-danger">Generated Image</p>
+        <p className="fs-3 text-bold text-primary">Generated Image</p>
         <img width="400" src={imageUrl?.url ? imageUrl.url : input} alt="analyzed" className='img-fluid'/>
         {/* <pre> {JSON.stringify(imageUrl, null, 2)} </pre> */}
-        <p className='lead text-start '>Description:
-          <small className="text-body-secondary"> {imageUrl.description.captions[0].text}</small>
+        <p className='text-start text-bold text-light'>Description:
+          <small className="text-body-light"> {imageUrl.description.captions[0].text}</small>
         </p>
-        <p className='lead text-start'>Confidence:
-          <small className="text-body-secondary"> {imageUrl.description.captions[0].confidence}</small>
+        <p className='text-start text-bold text-light'>Confidence:
+          <small className="text-body-light"> {imageUrl.description.captions[0].confidence}</small>
         </p>
-        <p className='lead text-start'>Tags:
-          <small className="text-body-secondary"> {imageUrl.description.tags.join(', ')}</small>
+        <p className='text-start text-bold text-light'>Tags:
+          <small className="text-body-light"> {imageUrl.description.tags.join(', ')}</small>
         </p>
       </div>
     );
@@ -84,11 +84,11 @@ function App() {
             </a>
           </header>
       </div>
-      <p className="fs-5 mb-4 text-center">A smart web application that integrates computer vision capabilities, leveraging Azure AI Vision and Azure OpenAI cognitive services.</p>
+      <p className="fs-5 mb-4 text-center text-primary">A smart web application that integrates computer vision capabilities, leveraging Azure AI Vision and Azure OpenAI cognitive services.</p>
       <div className="container text-center">
         <div className="row">
           <div className="col">
-            <div className="bg-dark text-secondary px-4 py-5 text-center">
+            <div className="text-light px-4 py-5 text-center">
               <div className="py-5">
                 <div className="mx-auto">
                   <form onSubmit={handleOnSubmit}>
